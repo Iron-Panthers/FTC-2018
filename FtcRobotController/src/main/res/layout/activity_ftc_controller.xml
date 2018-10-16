@@ -166,17 +166,54 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
     <!-- invisible except when programming mode is activated from the DS -->
     <TextView
-      android:id="@+id/textRemoteProgrammingMode"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:background="?attr/backgroundLight"
-      android:gravity="center"
-      android:textColor="?attr/textWhite"
-      android:textSize="40sp"
-      android:textStyle="bold"
-      android:visibility="invisible"
-      android:text="" />
-    
+        android:id="@+id/textRemoteProgrammingMode"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:background="?attr/backgroundLight"
+        android:gravity="center"
+        android:text=""
+        android:textColor="?attr/textWhite"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:visibility="invisible" />
+
+      <FrameLayout
+          android:layout_width="fill_parent"
+          android:layout_height="350dp"
+          android:layout_alignParentBottom="true"
+          android:layout_alignParentLeft="true"
+          android:background="?attr/backgroundDark"
+          android:id="@+id/frameLayout">
+          <org.opencv.android.JavaCameraView
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:visibility="gone"
+              android:id="@+id/show_camera_activity_java_surface_view"
+              opencv:show_fps="true"
+              opencv:camera_id="any" />
+
+          <Button
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Grab"
+              android:id="@+id/button3"
+              android:layout_gravity="end|bottom"
+              android:onClick="frameButtonOnClick"/>
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textAppearance="?android:attr/textAppearanceSmall"
+              android:text="[RESULT]"
+              android:id="@+id/resultText"
+              android:layout_gravity="end|top"
+              android:textColor="#ff0000" />
+
+      </FrameLayout>
+
+
   </RelativeLayout>
 
   <WebView
