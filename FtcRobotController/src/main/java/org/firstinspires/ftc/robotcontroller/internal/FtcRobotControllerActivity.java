@@ -140,7 +140,7 @@ public class FtcRobotControllerActivity extends Activity
       void myOnCreate(){
           getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-          cameraBridgeViewBase = (JavaCameraView) findViewById(R.id.show_camera_activity);
+          cameraBridgeViewBase = (JavaCameraView) findViewById(R.id.show_camera_activity_java_surface_view);
           new FrameGrabber(cameraBridgeViewBase);
       }
 
