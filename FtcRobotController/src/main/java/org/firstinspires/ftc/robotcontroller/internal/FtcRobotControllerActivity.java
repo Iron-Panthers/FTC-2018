@@ -134,6 +134,13 @@ import ftc.vision.FrameGrabber;
 @SuppressWarnings("WeakerAccess")
 public class FtcRobotControllerActivity extends Activity
 {
+
+    static final int FRAME_WIDTH_REQUEST = 176;
+    static final int FRAME_HEIGHT_REQUEST = 144;
+
+    //manages getting one frame at a time
+    public static FrameGrabber frameGrabber = null;
+
   ////////////// START VISION PROCESSING CODE //////////////
 
   // Loads camera view of OpenCV for us to use. This lets us see using OpenCV
@@ -142,8 +149,8 @@ public class FtcRobotControllerActivity extends Activity
   void myOnCreate(){
     getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-    cameraBridgeViewBase = (JavaCameraView) findViewById(R.id.show_camera_activity_java_surface_view);
-    new FrameGrabber(cameraBridgeViewBase);
+      cameraBridgeViewBase = (JavaCameraView) findViewById(R.id.show_camera_activity_java_surface_view);
+      frameGrabber = new FrameGrabber(cameraBridgeViewBase, FRAME_WIDTH_REQUEST, FRAME_HEIGHT_REQUEST);
   }
 
   //when the "Grab" button is pressed
