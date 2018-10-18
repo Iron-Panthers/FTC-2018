@@ -144,11 +144,24 @@ public class FtcRobotControllerActivity extends Activity
   // Loads camera view of OpenCV for us to use. This lets us see using OpenCV
   private CameraBridgeViewBase cameraBridgeViewBase;
 
-  void myOnCreate(){
+  void myOnCreate(final TextView outputView){
     getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-      cameraBridgeViewBase = (JavaCameraView) findViewById(R.id.show_camera_activity_java_surface_view);
-      frameGrabber = new SimpleFrameGrabber(cameraBridgeViewBase, FRAME_WIDTH_REQUEST, FRAME_HEIGHT_REQUEST);
+    cameraBridgeViewBase = (JavaCameraView) findViewById(R.id.show_camera_activity_java_surface_view);
+    frameGrabber = new SimpleFrameGrabber(cameraBridgeViewBase, FRAME_WIDTH_REQUEST                                                                                                                                                                                                                                                                                                                                                                                                                             , FRAME_HEIGHT_REQUEST);
+//    runOnUiThread(new Runnable() {
+//        @Override
+//        public void run() {
+//            while (true) {
+//                outputView.setText(Integer.toString(frameGrabber.frameCount));
+//                try {
+//                    Thread.sleep(500);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
+//    });
   }
 
   //when the "Grab" button is pressed
@@ -349,7 +362,7 @@ public class FtcRobotControllerActivity extends Activity
     setContentView(R.layout.activity_ftc_controller);
 
       ////////////// START VISION PROCESSING CODE //////////////
-      myOnCreate();
+      myOnCreate((TextView) findViewById(R.id.resultText));
       ////////////// END VISION PROCESSING CODE //////////////
 
     preferencesHelper = new PreferencesHelper(TAG, context);
