@@ -2,7 +2,7 @@ package org.firstinspires.ftc.team7316.util;
 
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.team7316.copypastaLib.MotionPath;
+import org.firstinspires.ftc.team7316.util.copypastaLib.MotionPath;
 
 
 /**
