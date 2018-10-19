@@ -13,9 +13,10 @@ public class Subsystems {
     public Subsystem[] subsystems;
     public DriveCode driveCode = new DriveCode();
     public ClimberSubsystem climberSubsystem=new ClimberSubsystem();
+    public PlateSubsystem plateSubsystem=new PlateSubsystem();
 
     private Subsystems () {
-        subsystems = new Subsystem[]{driveCode,climberSubsystem};
+        subsystems = new Subsystem[]{driveCode,climberSubsystem,plateSubsystem};
     }
 
     public static void createSubsystems() {
