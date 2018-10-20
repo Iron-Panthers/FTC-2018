@@ -74,6 +74,5 @@ public class ImageUtil {
             Imgproc.warpAffine(src, dst, rotationMatrix2D, size);
         }
     }
-
-
+	
 }

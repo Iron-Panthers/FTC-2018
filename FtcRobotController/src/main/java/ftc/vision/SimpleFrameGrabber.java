@@ -14,6 +14,8 @@ import org.opencv.core.Mat;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
+import java.util.Arrays;
+
 public class SimpleFrameGrabber implements CameraBridgeViewBase.CvCameraViewListener2{
 
     private Mat frame;
@@ -31,33 +33,29 @@ public class SimpleFrameGrabber implements CameraBridgeViewBase.CvCameraViewList
     @Override
     public void onCameraViewStarted(int width, int height) {
         frame = new Mat(height, width, CvType.CV_8UC4, new Scalar(0,0,0));
+        ImageProcess.start();
     }
 
     @Override
     public void onCameraViewStopped() {
-
+        ImageProcess.stop();
     }
 
     @Override
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
         Mat frame = inputFrame.rgba();
-        return processFrame(frame);
-    }
 
-    private Mat processFrame(Mat frame){
-        frameCount++;
-
-        Mat hsv = new Mat();
-        Imgproc.cvtColor(frame, hsv, Imgproc.COLOR_RGB2HSV);
-        int h = 22;
-        int r = 8;
-        Mat maskedImage = new Mat();
-        ImageUtil.hsvInRange(hsv, new Scalar(h-r,0,0), new Scalar(h+r,255,255),maskedImage);
-
-        Mat result = new Mat();
-        if (maskedImage.channels() == 3) {
-            Core.bitwise_and(frame, maskedImage, result);
+        ImageProcess.setSourceImage(frame);
+        if (ImageProcess.lastProcessed != null) {
+            Imgproc.drawContours(frame, Arrays.asList(ImageProcess.lastProcessed), 0, new Scalar(0, 0, 255), 3); // draw the contour on the orignial image
+            //paramters: image to draw on, the list of contours, the index of the contour we want to draw, the color to draw it in, the thickness of the line
+            // I make the contour into a list because the drawContours function only accepts lists (very annoying)
+            // The color is red (opencv lists colors as BGR)
         }
-        return hsv;
+
+//        Mat f = new Mat();
+//        ImageUtil.rotate(frame, f, 90);
+        return frame;
     }
+
 }
