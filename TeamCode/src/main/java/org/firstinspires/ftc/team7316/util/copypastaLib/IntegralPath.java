@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.team7316.copypastaLib;
+package org.firstinspires.ftc.team7316.util.copypastaLib;
 
 /**
  * Created by adumb on 1/9/18.

@@ -22,6 +22,11 @@ public class Constants {
     public static final int DISTANCE_ERROR_RANGE_TICKS = 10;
     public static final double ACCELERATION_SPEED=0.2;
 
+    public static final double DRIVE_P = 0;
+    public static final double DRIVE_I = 0;
+    public static final double DRIVE_D = 0;
+    public static final double DRIVE_F = 0;
+
     /**
      * @param dist inches
      */
