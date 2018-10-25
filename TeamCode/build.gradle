@@ -15,5 +15,4 @@
 apply from: '../build.common.gradle'
 
 repositories {
-    google()
 }
