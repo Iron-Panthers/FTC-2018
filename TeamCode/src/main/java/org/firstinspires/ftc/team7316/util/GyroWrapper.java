@@ -22,6 +22,14 @@ public class GyroWrapper {
         this.gyro = gyro;
     }
 
+
+    public GyroAngles angles() {
+        double head = gyro.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES).thirdAngle * -1 - currentHeading;
+        double pit = gyro.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES).firstAngle;
+        double roll = gyro.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES).secondAngle;
+        return new GyroAngles(head, pit, roll);
+    }
+
     /**
      * Turning right is negative so it's just multiplied by -1
      */
