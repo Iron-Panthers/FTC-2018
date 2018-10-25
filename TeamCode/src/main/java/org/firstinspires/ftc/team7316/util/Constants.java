@@ -9,6 +9,8 @@ public class Constants {
     public static final double RADIAN_TO_DEGREES = 180 / Math.PI;
     public static final double DEGREES_TO_RADIANS = Math.PI / 180;
 
+    public static final double MOTOR_DEADZONE = 0.05;
+
     // These rudimentary variables describe the robot for important auto calculations
     // Change them as you please
     public static final double JOYSTICK_DRIVE_DEADZONE = 0.05;
@@ -22,10 +24,10 @@ public class Constants {
     public static final int DISTANCE_ERROR_RANGE_TICKS = 10;
     public static final double ACCELERATION_SPEED=0.2;
 
-    public static final double DRIVE_P = 0;
+    public static final double DRIVE_P = 0.1;
     public static final double DRIVE_I = 0;
     public static final double DRIVE_D = 0;
-    public static final double DRIVE_F = 0;
+    public static final double DRIVE_F = 0.00057803468;
 
     /**
      * @param dist inches

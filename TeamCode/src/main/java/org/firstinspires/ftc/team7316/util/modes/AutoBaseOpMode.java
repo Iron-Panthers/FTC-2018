@@ -27,7 +27,9 @@ public abstract class AutoBaseOpMode extends OpMode {
         Log.i(Hardware.tag, "=========================== STARTING AUTO ================================");
         Scheduler.inTeleop = false;
         Scheduler.instance.wipe();
+        Log.d("hardware", "------about to run-------------");
         Hardware.setHardwareMap(hardwareMap);
+        Log.d("hardware", "------finished run----------------");
         Hardware.setTelemetry(telemetry);
         Subsystems.createSubsystems();
         onInit();

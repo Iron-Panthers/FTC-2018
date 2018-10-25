@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.team7316.commands;
 
+import android.util.Log;
+
 import org.firstinspires.ftc.team7316.util.Hardware;
 import org.firstinspires.ftc.team7316.util.commands.Command;
 import org.firstinspires.ftc.team7316.util.copypastaLib.CombinedPath;
@@ -13,6 +15,9 @@ public class DriveDistance extends Command {
     }
     @Override
     public void init() {
+        for (int i = 0; i < 10; i++) {
+            Log.d("init", "------------------------");
+        }
         Subsystems.instance.driveCode.resetMotors();
         if(ticks>0){
             Subsystems.instance.driveCode.setMotorPaths(new CombinedPath.LongitudalTrapezoid(0,ticks,1500,1500));

@@ -1,8 +1,11 @@
 package org.firstinspires.ftc.team7316.util;
 
+import android.util.Log;
+
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -46,6 +49,7 @@ public class Hardware {
      */
     public Hardware (HardwareMap map) {
         leftmotor = map.dcMotor.get(leftMotorName);
+        leftmotor.setDirection(DcMotorSimple.Direction.REVERSE);
         rightmotor= map.dcMotor.get(rightMotorName);
         centermotor=map.dcMotor.get(centerMotorName);
         climbmotor=map.dcMotor.get(climbMotorName);
@@ -59,8 +63,10 @@ public class Hardware {
         gyroParams.accelerationIntegrationAlgorithm = new JustLoggingAccelerationIntegrator();
 
         imu = map.get(BNO055IMU.class, imuname);
+        Log.d("gyro", "--------------start------------");
         imu.initialize(gyroParams);
         gyroWrapper = new GyroWrapper(imu);
+        Log.d("gyro", "-------------end----------------");
 
         leftmotorWrapper = new DCMotorWrapper(leftmotor, new PID(Constants.DRIVE_P, Constants.DRIVE_I, Constants.DRIVE_D, Constants.DRIVE_F, 0));
         rightmotorWrapper = new DCMotorWrapper(rightmotor, new PID(Constants.DRIVE_P, Constants.DRIVE_I, Constants.DRIVE_D, Constants.DRIVE_F, 0));

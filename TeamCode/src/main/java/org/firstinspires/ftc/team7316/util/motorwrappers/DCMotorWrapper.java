@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.team7316.util.motorwrappers;
 
+import android.util.Log;
+
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.team7316.util.Constants;
@@ -49,7 +51,12 @@ public class DCMotorWrapper {
         if (Math.abs(pow) > maxPower) {
             pow = (pow > 0) ? maxPower : -maxPower;
         }
-        motor.setPower(pow);
+
+        if (pow != 0) {
+            Log.d("power", String.valueOf(pow));
+        }
+
+        setPower(pow);
     }
 
     public boolean completedDistance() {
@@ -63,6 +70,11 @@ public class DCMotorWrapper {
     }
 
     public void setPower(double power) {
+//        if (power > 0) {
+//            power = power * (1 - Constants.MOTOR_DEADZONE) + Constants.MOTOR_DEADZONE;
+//        } else {
+//            power = power * (1 - Constants.MOTOR_DEADZONE) - Constants.MOTOR_DEADZONE;
+//        }
         motor.setPower(power);
     }
 
