@@ -1,13 +1,3 @@
-import java.awt.FlowLayout;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfByte;
@@ -87,60 +77,6 @@ public class ImageUtil {
 			Mat rotationMatrix2D = Imgproc.getRotationMatrix2D(center, angle, 1);
 			Imgproc.warpAffine(src, dst, rotationMatrix2D, size);
 		}
-	}
-	
-	/**
-	 * Shows a given image onscreen
-	 * 
-	 * @param src Image to show
-	 */
-	public static void imshow(Mat src){ // I copy pasted this method, we don't need to worry about it
-	    BufferedImage bufImage = null;
-	    try {
-	        MatOfByte matOfByte = new MatOfByte();
-	        Imgcodecs.imencode(".jpg", src, matOfByte); 
-	        byte[] byteArray = matOfByte.toArray();
-	        InputStream in = new ByteArrayInputStream(byteArray);
-	        bufImage = ImageIO.read(in);
-
-	        JFrame frame = new JFrame("Image");
-	        frame.getContentPane().setLayout(new FlowLayout());
-	        frame.getContentPane().add(new JLabel(new ImageIcon(bufImage)));
-	        frame.pack();
-	        frame.setVisible(true);
-	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    }
-	}
-	
-	public static Mat resize(Mat sourceImg) {
-		long subt = System.nanoTime();
-		Mat img = new Mat();
-		Imgproc.resize(sourceImg, img, new Size(), 0.25, 0.25);
-		return img;
-		
-		// This big if statement is only needed because our images are huge and vary in size, we won't need to do this on the phone
-		// We will likely just resize the image to be 1/2 size in the real code, you can worry about that later
-//		if (sourceImg.rows() > 300*8 || sourceImg.cols() > 400*8) {
-//			Imgproc.resize(sourceImg, img, new Size(), 0.125, 0.125);
-//			System.out.println("Eigth size: " + Integer.toString(img.rows()) + ", " + Integer.toString(img.cols()));
-//		} else if (sourceImg.rows() > 300*4 || sourceImg.cols() > 400*4) {
-//			Imgproc.resize(sourceImg, img, new Size(), 0.25, 0.25);
-//			System.out.println("Quarter size: " + Integer.toString(img.rows()) + ", " + Integer.toString(img.cols()));
-//		} else if (sourceImg.rows() > 300*2 || sourceImg.cols() > 400*2) {
-//			Imgproc.resize(sourceImg, img, new Size(), 0.5, 0.5);
-//			System.out.println("Half size: " + Integer.toString(img.rows()) + ", " + Integer.toString(img.cols()));
-//		} else {
-//			img = sourceImg;
-//			System.out.println("Normal size: " + Integer.toString(img.rows()) + ", " + Integer.toString(img.cols()));
-//		}
-//		
-//		System.out.print("Resize: "); // All these print statements are just going to be telling me how long each step took in ms
-//		System.out.println( (System.nanoTime() - subt) / 1000000.0 );
-//		subt = System.nanoTime();
-//		
-//		return img;
 	}
 	
 }

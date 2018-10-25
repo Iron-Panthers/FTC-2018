@@ -11,6 +11,9 @@ public class TeleopDrive extends Command {
     double leftset=0;
     double rightset=0;
     double centerset=0;
+    double leftspeed=0;
+    double rightspeed=0;
+    double centerspeed=0;
     boolean fast;
     @Override
     public void init() {
@@ -27,9 +30,10 @@ public class TeleopDrive extends Command {
         }
         double leftTarget = OI.instance.gp1.left_stick.getY();
         double rightTarget = OI.instance.gp1.left_stick.getY();
-        leftTarget-=OI.instance.gp1.right_stick.getX();
-        rightTarget+=OI.instance.gp1.right_stick.getX();
+        leftTarget+=OI.instance.gp1.right_stick.getX();
+        rightTarget-=OI.instance.gp1.right_stick.getX();
         double centerTarget=OI.instance.gp1.left_stick.getX();
+
         if(Math.abs(leftset)<Math.abs(leftTarget)){
             leftset+=(Math.abs(leftTarget)/leftTarget)* Constants.ACCELERATION_SPEED;
         }
@@ -39,7 +43,7 @@ public class TeleopDrive extends Command {
         if (Math.abs(centerset)<Math.abs(centerTarget)){
             centerset+=(Math.abs(centerTarget)/centerTarget)* Constants.ACCELERATION_SPEED;
         }
-        if (leftset>leftTarget){
+        if (>leftTarget){
             leftset=leftTarget;
         }
         if (rightset>rightTarget){
