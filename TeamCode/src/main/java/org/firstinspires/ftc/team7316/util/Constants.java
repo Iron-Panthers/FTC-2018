@@ -17,6 +17,7 @@ public class Constants {
     public static final double ENCODER_REV_PER_WHEEL_REV = 0.5;
     public static final double WHEEL_RADIUS = 2; // inches
     public static final double WHEEL_CIRCUMFERENCE = WHEEL_RADIUS * 2 * Math.PI;
+    public static final double SLOW_SPEED = 0.6;
 
     public static final double AUTO_DEADZONE = 0.15;
     public static final int DISTANCE_ERROR_RANGE_TICKS = 10;
