@@ -6,7 +6,7 @@ import org.firstinspires.ftc.team7316.commands.TeleopDrive;
 import org.firstinspires.ftc.team7316.util.copypastaLib.MotionPath;
 
 
-public class DriveCode extends Subsystem {
+public class DriveSubsystem extends Subsystem {
     @Override
     public void reset() {
         Hardware.instance.leftmotor.setPower(0);

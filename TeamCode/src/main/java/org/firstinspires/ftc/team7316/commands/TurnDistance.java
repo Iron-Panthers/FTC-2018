@@ -24,7 +24,7 @@ public class TurnDistance extends Command {
     }
 
     public TurnDistance(double wantedAngle, double timeout, double maxspeed) {
-        requires(Subsystems.instance.driveCode);
+        requires(Subsystems.instance.driveSubsystem);
         this.MAX_SPEED = maxspeed;
 
         this.wantedAngle = wantedAngle;
