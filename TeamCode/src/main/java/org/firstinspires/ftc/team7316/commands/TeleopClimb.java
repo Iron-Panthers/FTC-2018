@@ -15,8 +15,11 @@ public class TeleopClimb extends Command {
         if(OI.instance.gp2.dp_down.pressedState()) {
             Subsystems.instance.climberSubsystem.setMotor(-1);
         }
-        if(OI.instance.gp2.dp_up.pressedState()) {
+        else if(OI.instance.gp2.dp_up.pressedState()) {
             Subsystems.instance.climberSubsystem.setMotor(1);
+        }
+        else{
+            Subsystems.instance.climberSubsystem.setMotor(0);
         }
     }
 

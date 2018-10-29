@@ -24,12 +24,8 @@ public class TeleopDrive extends Command {
 
     @Override
     public void loop() {
-        if(OI.instance.gp1.rightTriggerWrapper.pressedState()){
-            fast= true;
-        }
-        else {
-            fast=false;
-        }
+        fast = OI.instance.gp1.rightTriggerWrapper.pressedState();
+
         leftchange= Hardware.instance.leftmotor.getCurrentPosition()-leftlast;
         rightchange=Hardware.instance.rightmotor.getCurrentPosition()-rightlast;
         centerchange=Hardware.instance.centermotor.getCurrentPosition()-centerlast;
@@ -68,7 +64,7 @@ public class TeleopDrive extends Command {
         if (Math.abs(centerset)<Math.abs(centerTarget)){
             centerset+=(Math.abs(centerTarget)/centerTarget)* Constants.ACCELERATION_SPEED;
         }
-        if (leftset>leftTarget){
+        if (Math.abs(leftset)>Math.abs(leftTarget)){
             leftset=leftTarget;
         }
         if (rightset>rightTarget){
@@ -77,11 +73,15 @@ public class TeleopDrive extends Command {
         if(centerset>centerTarget){
             centerset=centerTarget;
         }
-        if (fast==false){
+        if (!fast){
             leftset*=Constants.SLOW_SPEED;
             rightset*=Constants.SLOW_SPEED;
             centerset*=Constants.SLOW_SPEED;
         }
+        Hardware.log("leftspeed", leftset);
+        Hardware.log("rightspeed", rightset);
+        Hardware.log("centerspeed", centerset);
+
         Subsystems.instance.driveSubsystem.driveMotorSet(-leftset,rightset);
         Subsystems.instance.driveSubsystem.strafeMotorSet(centerset);
     }
